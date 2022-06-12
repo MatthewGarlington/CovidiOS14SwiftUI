@@ -11,6 +11,8 @@
 		6BD771292855F2C90033DA01 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BD771282855F2C90033DA01 /* ContentView.swift */; };
 		6BD7712B2855F2D20033DA01 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6BD7712A2855F2D20033DA01 /* Assets.xcassets */; };
 		6BD7712E2855F2D20033DA01 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6BD7712D2855F2D20033DA01 /* Preview Assets.xcassets */; };
+		6BD771352855F4340033DA01 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BD771342855F4340033DA01 /* NetworkManager.swift */; };
+		6BD771372855F5BC0033DA01 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BD771362855F5BC0033DA01 /* Model.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +21,8 @@
 		6BD771282855F2C90033DA01 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		6BD7712A2855F2D20033DA01 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6BD7712D2855F2D20033DA01 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		6BD771342855F4340033DA01 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		6BD771362855F5BC0033DA01 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +57,8 @@
 			children = (
 				6BD771262855F2C90033DA01 /* Covid_iOS14App.swift */,
 				6BD771282855F2C90033DA01 /* ContentView.swift */,
+				6BD771342855F4340033DA01 /* NetworkManager.swift */,
+				6BD771362855F5BC0033DA01 /* Model.swift */,
 				6BD7712A2855F2D20033DA01 /* Assets.xcassets */,
 				6BD7712C2855F2D20033DA01 /* Preview Content */,
 			);
@@ -137,8 +143,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6BD771352855F4340033DA01 /* NetworkManager.swift in Sources */,
 				6BD771292855F2C90033DA01 /* ContentView.swift in Sources */,
 				6BD771272855F2C90033DA01 /* Covid_iOS14App.swift in Sources */,
+				6BD771372855F5BC0033DA01 /* Model.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
