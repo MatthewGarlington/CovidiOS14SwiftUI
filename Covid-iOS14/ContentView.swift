@@ -9,30 +9,75 @@ import SwiftUI
 
 struct ContentView: View {
     @StateObject var networkManager = NetworkManager()
-    var dateFetched: Date = .now
-    
-    
+
     var body: some View {
-        
+
         NavigationStack {
-            List {
-                ForEach(networkManager.covidInfo.sorted( by: { $0.state < $1.state}), id: \.self) { entry in
-                    NavigationLink(entry.state) {
-                        VStack {
-                            ForEach(states.sorted(by: ==), id: \.key) { key, value in
-                                if entry.state == key {
-                                    Text(value)
-                                }
-                            }
-                            Spacer()
+            ScrollView(showsIndicators: false) {
+                VStack(spacing: 10) {
+                    
+                    Text("Maryland")
+                        .font(.system(size: 23, weight: .bold))
+                        .padding(10)
+                    
+                    ForEach(networkManager.covidInfo.sorted( by: { $1.created_at < $0.created_at}), id: \.self) { covidInfo in
+                        if covidInfo.state == "MD" {
+                            NavigationLink(destination: DestinationView(covidInfo: covidInfo)
+                                           , label: {
+                                CovidStateLabel(dateLabel: covidInfo.created_at)
+                            })
                         }
                     }
                 }
             }
             .onAppear {
-                networkManager.fetch(dateFetched: "2022-01-14T00:00:00.000")
+                networkManager.fetch()
             }
+            .navigationBarTitle(Text("Covid Data"))
         }
+    }
+}
+
+struct DestinationView: View {
+    var covidInfo: CovidInfo
+    var body: some View {
+        VStack(spacing: 20) {
+            ForEach(states.sorted(by: ==), id: \.key) { key, value in
+                if covidInfo.state == key {
+                    Text(value)
+                        .font(.largeTitle)
+                        .bold()
+                }
+            }
+            
+            Text(String(Int(covidInfo.tot_cases) ?? 0))
+            
+            Text("\(covidInfo.created_at)")
+            
+        }
+    }
+}
+
+struct CovidStateLabel: View {
+    var dateLabel: String
+    var body: some View {
+        
+        ZStack {
+            Text("\(changeStringToDate(dateLabel: dateLabel))")
+        }
+    }
+    
+    func changeStringToDate(dateLabel: String) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX") // set locale to reliable US_POSIX
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS"
+        let calendar = Calendar.current
+        let date = dateFormatter.date(from: dateLabel)!
+        let components = calendar.dateComponents([.year, .month, .day], from: date)
+        let finalDate = calendar.date(from:components)
+        
+        
+        return finalDate!.formatted(date: .abbreviated, time: .shortened)
     }
 }
 
@@ -41,7 +86,6 @@ struct ContentView_Previews: PreviewProvider {
         ContentView()
     }
 }
-
 
 let states = [
     "AK" : "Alaska",
@@ -100,3 +144,5 @@ let states = [
     "WV" : "West Virginia",
     "WY" : "Wyoming"
 ]
+
+

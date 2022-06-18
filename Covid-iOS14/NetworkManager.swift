@@ -13,9 +13,8 @@ class NetworkManager: ObservableObject {
     
     var cancellables: Set<AnyCancellable> = []
     
-    func fetch(dateFetched: String) {
-
-        let url = URL(string: "https://data.cdc.gov/resource/9mfq-cb36.json?submission_date=\(dateFetched)")!
+    func fetch() {
+        let url = URL(string: "https://data.cdc.gov/resource/9mfq-cb36.json")!
         URLSession.shared.dataTaskPublisher(for: url)
             .map { $0.data }
             .decode(type: [CovidInfo].self, decoder: JSONDecoder())

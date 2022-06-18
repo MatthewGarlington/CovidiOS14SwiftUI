@@ -17,7 +17,7 @@ struct CovidInfo: Hashable, Decodable {
     var pnew_case: String?
     var tot_death: String?
     var pnew_death: String?
-    var created_at: String?
+    var created_at: String
     var consent_cases: String?
     var consent_deaths: String?
 }
